@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 // import 'package:riverpod/riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/provider/news_provider.dart';
+import 'package:newsapp/screens/views/detailspage.dart';
 
 class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key});
@@ -102,86 +103,94 @@ class MyHomePage extends ConsumerWidget {
             data: (data) => Expanded(
               child: ListView.builder(
                 itemCount: data.length,
-                itemBuilder: (context, index) => Container(
-                  margin: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurple.shade300,
-                    borderRadius: BorderRadius.circular(
-                      15,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailsPage(
+                                getIndex: index,
+                              ))),
+                  child: Container(
+                    margin: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple.shade300,
+                      borderRadius: BorderRadius.circular(
+                        15,
+                      ),
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Expanded(
-                          flex: 1,
-                          child: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(data[index].urlToImage.toString()),
-                            radius: 50,
-                            // margin: const EdgeInsets.all(5),
-                            // decoration: BoxDecoration(
-                            //   borderRadius: BorderRadius.circular(
-                            //     40,
-                            //   ),
-                            // ),
-                            // child: Image.network(
-                            //   data[index].urlToImage.toString(),
-                            //   fit: BoxFit.fill,
-                            // ),
-                          ),
-                        ),
-                        // const Expanded(
-                        //   flex: 1,
-                        //   child: FlutterLogo(
-                        //     size: 140,
-                        //   ),
-                        // ),
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // FlutterLogo(
-                              //   size: 50,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Expanded(
+                            flex: 1,
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  data[index].urlToImage.toString()),
+                              radius: 50,
+                              // margin: const EdgeInsets.all(5),
+                              // decoration: BoxDecoration(
+                              //   borderRadius: BorderRadius.circular(
+                              //     40,
+                              //   ),
                               // ),
-                              Text(
-                                "${data[index].title}",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.getFont(
-                                  'Castoro',
-                                  fontSize: 24,
-                                ),
-                              ),
-                              Text(
-                                "${data[index].author}",
-                                style: GoogleFonts.getFont('Caveat'),
-                              ),
-                              Text(
-                                "${data[index].content}",
-                                // "Flutter's hot reload helps you quickly and easily experiment, build UIs, add features, and fix bug faster. Experience sub-second reload times, without losing state, on emulators, simulators, and hardware for iOS and Android.",
-                                style: GoogleFonts.getFont(
-                                  'Karla',
-                                  fontSize: 20,
-                                ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              // Icon(Icons.sentiment_very_satisfied),
-                              Text(
-                                data[index].publishedAt.toString(),
-                                style: GoogleFonts.getFont('Noto Serif'),
-                              ),
-                            ],
+                              // child: Image.network(
+                              //   data[index].urlToImage.toString(),
+                              //   fit: BoxFit.fill,
+                              // ),
+                            ),
                           ),
-                        ),
-                      ],
+                          // const Expanded(
+                          //   flex: 1,
+                          //   child: FlutterLogo(
+                          //     size: 140,
+                          //   ),
+                          // ),
+                          Expanded(
+                            flex: 2,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // FlutterLogo(
+                                //   size: 50,
+                                // ),
+                                Text(
+                                  "${data[index].title}",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.getFont(
+                                    'Castoro',
+                                    fontSize: 24,
+                                  ),
+                                ),
+                                Text(
+                                  "${data[index].author}",
+                                  style: GoogleFonts.getFont('Caveat'),
+                                ),
+                                Text(
+                                  "${data[index].content}",
+                                  // "Flutter's hot reload helps you quickly and easily experiment, build UIs, add features, and fix bug faster. Experience sub-second reload times, without losing state, on emulators, simulators, and hardware for iOS and Android.",
+                                  style: GoogleFonts.getFont(
+                                    'Karla',
+                                    fontSize: 20,
+                                  ),
+                                  // maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                // Icon(Icons.sentiment_very_satisfied),
+                                Text(
+                                  data[index].publishedAt.toString(),
+                                  style: GoogleFonts.getFont('Noto Serif'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

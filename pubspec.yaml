@@ -40,6 +40,7 @@ dependencies:
   http: ^0.13.5
   riverpod: ^2.3.6
   flutter_riverpod: ^2.3.6
+  gap: ^3.0.0
   # build_runner: ^2.3.3
 
 dev_dependencies:
